@@ -27,10 +27,6 @@ export default class Todo extends Component {
         });
     }
 
-    watch() {
-        console.log('Ready');
-    }
-
     render (data) {
         const { userName, items } =  data;
         return `
@@ -38,10 +34,6 @@ export default class Todo extends Component {
                 <h2>${userName}</h2>
                 <ul>${ items }</ul>
             </main>`;
-    }
-
-    clickHandler(text) {
-        console.log(text);
     }
 }
 

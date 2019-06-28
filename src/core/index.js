@@ -1,12 +1,9 @@
-// import { render } from './render.js';
-// import { createElement } from './create-element.js';
-
 class Component {
     constructor(args) {
 
         const { name, data, props, css } = args;
 
-        this.name = name;
+        this.name_ = name;
         this.data_ = data;
 
         let tmpl = document.createElement('template');
@@ -18,7 +15,7 @@ class Component {
 
         const self = this;
 
-        customElements.define(this.name, class extends HTMLElement {
+        customElements.define(this.name_, class extends HTMLElement {
             static get observedAttributes() {
                 return [props];
             }
@@ -27,26 +24,29 @@ class Component {
                 super();
                 this.root = this.attachShadow({mode: 'open'});
                 this.root.appendChild(tmpl.content.cloneNode(true));
-                this.connectedCallback();
             }
 
             /** Custom myElemet element added to page. */
             connectedCallback() {
+                console.log('connectedCallback');
                 self.connected();
             }
 
             /** Custom myElemet element removed from page. */
             disconnectedCallback() {
+                console.log('disconnectedCallback');
                 self.disconnected();
             }
 
             /** Custom myElemet element moved to new page. */
             adoptedCallback() {
+                console.log('adoptedCallback');
                 self.updated();
             }
 
             /** Custom myElemet element attributes changed */
             attributeChangedCallback(name, oldValue, newValue) {
+                console.log('attributeChangedCallback');
                 console.log(name);
                 self.watch(name, oldValue, newValue);
             }
@@ -62,13 +62,21 @@ class Component {
         return this.data_;
     }
 
-    connected() {}
+    connected() {
+        console.log('connected');
+    }
 
-    disconnected() {}
+    disconnected() {
+        console.log('disconnected');
+    }
 
-    watch() {}
+    watch() {
+        console.log('watch');
+    }
 
-    render() {}
+    render() {
+        console.log('render');
+    }
 
 }
 
