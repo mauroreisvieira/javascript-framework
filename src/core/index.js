@@ -29,13 +29,12 @@ class Component {
             /** Custom myElemet element added to page. */
             connectedCallback() {
                 console.log('connectedCallback');
-                self.connected();
+                self.watch(this);
             }
 
             /** Custom myElemet element removed from page. */
             disconnectedCallback() {
                 console.log('disconnectedCallback');
-                self.disconnected();
             }
 
             /** Custom myElemet element moved to new page. */
@@ -48,7 +47,7 @@ class Component {
             attributeChangedCallback(name, oldValue, newValue) {
                 console.log('attributeChangedCallback');
                 console.log(name);
-                self.watch(name, oldValue, newValue);
+                self.watch(this);
             }
         });
     }
@@ -62,17 +61,7 @@ class Component {
         return this.data_;
     }
 
-    connected() {
-        console.log('connected');
-    }
-
-    disconnected() {
-        console.log('disconnected');
-    }
-
-    watch() {
-        console.log('watch');
-    }
+    watch(el) {}
 
     render() {
         console.log('render');

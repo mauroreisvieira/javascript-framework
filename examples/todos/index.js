@@ -24,16 +24,27 @@ export default class Todo extends Component {
                 li {
                     color: red;
                 }`,
+            ready: () => {
+                console.log('Ready');
+            }
         });
     }
 
     render (data) {
         const { userName, items } =  data;
         return `
-            <main>
+            <main">
                 <h2>${userName}</h2>
                 <ul>${ items }</ul>
             </main>`;
+    }
+
+    watch(el) {
+        this.color = el.getAttribute('color');
+        this.fontSize = el.getAttribute('fontSize');
+
+        el.style.setProperty('color', this.color);
+        el.style.setProperty('font-size', this.fontSize + 'px');
     }
 }
 
